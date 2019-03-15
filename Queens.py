@@ -113,7 +113,7 @@ for i in population:
 print("-----")
 
 sorted_pop = sorted(population, key=operator.attrgetter('fitness'))
-sorted_pop.reverse()
+
 for i in sorted_pop:
     print("Fitness:", i.fitness)
     print("Moveset:\n", i.moves)
@@ -123,11 +123,10 @@ for i in sorted_pop:
 #For a number(ne population)
 #randomly pick two genes
 #cross them
-y=[]
-for i in range(100):
-    y.append(np.random.geometric(0.5,1))
+arr = np.arange(0,1001)
+prob = np.exp(arr/1000)
+rand_draw1 = np.random.choice(arr, 1, p=prob/sum(prob))
+rand_draw2 = np.random.choice(arr, 1, p=prob/sum(prob))
 
-print(y)
-plt.hist(y)
-plt.show()
+print(rand_draw1, rand_draw2)
 crossGenes(population[12], population[36])
