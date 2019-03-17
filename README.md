@@ -1,4 +1,4 @@
-#8 Queens Evolutionary
+# 8 Queens Evolutionary
 
 This is a Python program that solves a 8 Queen puzzle.
 
@@ -6,7 +6,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Eight_queens_puzzle):
 
 > The eight queens puzzle is the problem of placing eight chess queens on an 8×8 chessboard so that no two queens threaten each other; thus, a solution requires that no two queens share the same row, column, or diagonal.
 
-##Short solution description
+## Short solution description
 
 In the beginning code generates a 1000 random movesets(Positions of Queens). 
 
@@ -14,13 +14,13 @@ Then in each new generation movesets from the past are recombined at random, wit
 
 When the solution is found, i.e. fitness function equals 8, the program stops and prints the solution.
 
-##Results
+## Results
 
 Examples of solutions were generated using the software in this repository.
 
 Positions of Queens are denoted by (X,Y) where X would present the horizontal or "letter" coordinate on the baord and Y the vertical or "number" coordinate on the board looking from the top. They are both in range of `[0,7]`. So a coordinate `[1,4]` in the below solution would be equal to chess board position of **E7**.
 
-###Solution Example 1
+### Solution Example 1
 Positions of Queens: [[2, 5], [7, 4], [1, 1], [6, 7], [3, 2], [0, 6], [4, 0], [5, 3]]
 Board:
 
@@ -42,13 +42,13 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board1][/images/sol1.png]
+! [board1][/images/sol1.png]
 
 With the graph of the fitness function through generations here:
 
-![graph1][/images/Figure_1.png]
+! [graph1][/images/Figure_1.png]
 
-###Solution Example 2
+### Solution Example 2
 
 Positions of Queens: [[7, 3], [5, 7], [2, 0], [0, 5], [3, 6], [4, 4], [6, 1], [1, 2]]
 Board:
@@ -71,13 +71,13 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board2][/images/sol2.png]
+! [board2][/images/sol2.png]
 
 With the graph of the fitness function through generations here:
 
-![graph2][/images/Figure_2.png]
+! [graph2][/images/Figure_2.png]
 
-###Solution Example 3
+### Solution Example 3
 
 Positions of Queens: [[7, 5]), [1, 0], [4, 1], [6, 2], [2, 7], [3, 3], [0, 4], [5, 6]]
 Board:
@@ -106,7 +106,7 @@ With the graph of the fitness function through generations here:
 
 ![graph2][/images/Figure_3.png]
 
-###Solution Example 4
+### Solution Example 4
 
 Positions of Queens: [[6, 5], [7, 3], [5, 7], [1, 4], [2, 6], [0, 1], [4, 2], [3, 0]]
 Board:
@@ -135,7 +135,7 @@ With the graph of the fitness function through generations here:
 
 ![graph2][/images/Figure_4.png]
 
-##Prerequisites
+## Prerequisites
 
 * Python 3+
 * NumPy 1.15.1
