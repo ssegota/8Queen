@@ -9,6 +9,7 @@ import numpy as np
 import operator
 import matplotlib.pyplot as plt
 
+MUTATION_CHANCE=100 #Lower the value higher chance of random mutation
 
 class gene(object):
     def __init__(self, fitness, moves):
@@ -47,22 +48,31 @@ def crossGenes(gene1, gene2):
     startFit=0
     moves = []
     for i in range(8):
-        #Random mutation probability 1/1000
+        #Random mutation probability 1/MUTATION_CHANCE
         
-        if np.random.randint(1000) == 0:
+        if np.random.randint(MUTATION_CHANCE) == 0:
             #print("assign a random value to the moves")
             moves.append([np.random.randint(0, 8), np.random.randint(0, 8)])
             continue
         
         #IF one is (0,0) 
-        if (gene1.moves[i][0] == 0 and gene1.moves[i][1] == 0) and ((gene2.moves[i][0] != 0 or gene2.moves[i][1] != 0)):
+        if (gene1.moves[i][0] == 8 and gene1.moves[i][1] == 8) and ((gene2.moves[i][0] != 8 or gene2.moves[i][1] != 8)):
             #print("Use move from 2")
             moves.append(gene2.moves[i])
             continue
-        if (gene2.moves[i][0] == 0 and gene2.moves[i][1] == 0) and ((gene1.moves[i][0] != 0 or gene1.moves[i][1] != 0)):
+        if (gene2.moves[i][0] == 8 and gene2.moves[i][1] == 8) and ((gene1.moves[i][0] != 8 or gene1.moves[i][1] != 8)):
             #print("Use move from 1")
             moves.append(gene1.moves[i])
             continue
+        
+        #If both are zero append a random solution
+        if (gene2.moves[i][0] == 8 and gene2.moves[i][1] == 8) and ((gene1.moves[i][0] == 8 and gene1.moves[i][1] == 8)):
+                #print("Use move from 1")
+            moves.append([np.random.randint(0, 8), np.random.randint(0, 8)])
+            continue
+        
+        
+        ###Choose a random gene
         #otherwise toss a coin to pick between the two
         if np.random.randint(2)==0:
             #print("Choose gene 1")
@@ -72,27 +82,60 @@ def crossGenes(gene1, gene2):
             #print("Choose gene 2")
             moves.append(gene2.moves[i])
             continue
-
-        
-
-        
-        print(gene1.moves[i])
-        print(gene2.moves[i])
+                
+        #print(gene1.moves[i])
+        #print(gene2.moves[i])
         
     #print("MOVES", moves)
+    return(moves)
+
+def calculateFitness(moves, printBoard=False):
+    b = np.full((8, 8), 8)
+    fit=0
+    while True:
+        if fit==8:
+            break
+        if moves[fit][1]==8 or moves[fit][0]==8:
+            break
+        x = moves[fit][1]
+        y = moves[fit][0]
+        if b[y][x] == 1 or b[y][x] == 2:
+            break
+        b = fillBoard(b,x,y)
+        b[y][x]=2
+        fit+=1
+        #if printBoard:
+        #    print(b)
+    
+    if printBoard:
+        #for i in range(8):
+            #print(i)
+            #b[moves[i][0]][moves[i][1]]=2
+        showBoard(b)
+    return fit
+
+def showBoard(b):
+    for i in range(8):
+        for j in range(8):
+            if b[i][j]==8 or b[i][j]==1:
+                print(".", end='')
+            else:
+                print("Q", end='')
+            #print(b[i][j], end='')
+        print("\n")
 
 #GENERATE STARTING POPULATION
 population = []
 for i in range(1000):
-    b = np.zeros((8,8))
+    b = np.full((8,8),8)
 
-    moves=np.zeros(shape=(8,2))
+    moves=np.full((8,2),8)
 
     for i in range(8):
         
         x=np.random.randint(0,8)
         y=np.random.randint(0,8)
-        if b[x][y]==1:
+        if b[y][x]==1:
             break
         moves[i][0]=y
         moves[i][1]=x
@@ -105,28 +148,53 @@ for i in range(1000):
     #print("Moveset:\n", unit.moves)
     population.append(unit)
 
-for i in population:
-    if i.fitness==7:
-        print("Fitness:", i.fitness)
-        print("Moveset:\n", i.moves)
-
-print("-----")
-
 sorted_pop = sorted(population, key=operator.attrgetter('fitness'))
 
-for i in sorted_pop:
-    print("Fitness:", i.fitness)
-    print("Moveset:\n", i.moves)
 
 #START CROSSING
 
 #For a number(ne population)
 #randomly pick two genes
 #cross them
-arr = np.arange(0,1001)
-prob = np.exp(arr/1000)
-rand_draw1 = np.random.choice(arr, 1, p=prob/sum(prob))
-rand_draw2 = np.random.choice(arr, 1, p=prob/sum(prob))
 
-print(rand_draw1, rand_draw2)
-crossGenes(population[12], population[36])
+generation_past = sorted_pop
+generationCount = 0
+
+fitness_per_gen = []
+
+while True:
+    generationCount+=1
+    population_next = []
+
+    for i in range(1000):
+        new_gene = gene(0, [])
+        b = np.zeros((8, 8))
+        arr = np.arange(0,1000)
+        prob = np.exp(arr/1000)
+        rand_draw1 = np.random.choice(arr, 1, p=prob/sum(prob))
+        rand_draw2 = np.random.choice(arr, 1, p=prob/sum(prob))
+        new_gene.moves = crossGenes(generation_past[rand_draw1[0]], generation_past[rand_draw2[0]])
+        new_gene.fitness=calculateFitness(new_gene.moves)
+        #print(crossGenes(sorted_pop[rand_draw1[0]], sorted_pop[rand_draw2[0]]))
+        #print(new_gene.fitness, new_gene.moves)
+        #print(rand_draw1, rand_draw2)
+        population_next.append(new_gene)
+
+    population_next = sorted(population_next, key=operator.attrgetter('fitness'))
+    fitness_per_gen.append(population_next[999].fitness)
+    generation_past=population_next
+    print(generationCount, population_next[999].fitness)
+    fitness_per_gen.append(population_next[999].fitness)
+    if population_next[999].fitness==8:
+        print(population_next[999].moves)
+        calculateFitness(population_next[999].moves, True)
+        break
+
+x = np.arange(0,len(fitness_per_gen),1)
+
+plt.plot(x, fitness_per_gen)
+plt.title("Fitness function for a \"8 Queen\" problem solved with an evolutionary algorithm")
+plt.xlabel("Number of Generations")
+plt.ylabel("Number of Queens placed on board")
+plt.legend(["Fitness"])
+plt.show()
