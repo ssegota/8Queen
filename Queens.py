@@ -116,6 +116,7 @@ def calculateFitness(moves, printBoard=False):
 
 def showBoard(b):
     print("Board:")
+    print("\n")
     for i in range(8):
         for j in range(8):
             if b[i][j]==8 or b[i][j]==1:

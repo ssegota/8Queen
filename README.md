@@ -23,6 +23,7 @@ Positions of Queens are denoted by (X,Y) where X would present the horizontal or
 ###Solution Example 1
 Positions of Queens: [[2, 5], [7, 4], [1, 1], [6, 7], [3, 2], [0, 6], [4, 0], [5, 3]]
 Board:
+
 ......Q.
 
 .Q......
@@ -41,16 +42,17 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board1][/images/logo.png/sol1.png]
+![board1][/images/sol1.png]
 
 With the graph of the fitness function through generations here:
 
-![graph1][/images/logo.png/Figure_1.png]
+![graph1][/images/Figure_1.png]
 
 ###Solution Example 2
 
 Positions of Queens: [[7, 3], [5, 7], [2, 0], [0, 5], [3, 6], [4, 4], [6, 1], [1, 2]]
 Board:
+
 .....Q..
 
 ..Q.....
@@ -69,16 +71,17 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board2][/images/logo.png/sol2.png]
+![board2][/images/sol2.png]
 
 With the graph of the fitness function through generations here:
 
-![graph2][/images/logo.png/Figure_2.png]
+![graph2][/images/Figure_2.png]
 
 ###Solution Example 3
 
 Positions of Queens: [[7, 5]), [1, 0], [4, 1], [6, 2], [2, 7], [3, 3], [0, 4], [5, 6]]
 Board:
+
 ....Q...
 
 Q.......
@@ -97,11 +100,40 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board2][/images/logo.png/sol3.png]
+![board2][/images/sol3.png]
 
 With the graph of the fitness function through generations here:
 
-![graph2][/images/logo.png/Figure_3.png]
+![graph2][/images/Figure_3.png]
+
+###Solution Example 4
+
+Positions of Queens: [[6, 5], [7, 3], [5, 7], [1, 4], [2, 6], [0, 1], [4, 2], [3, 0]]
+Board:
+
+.Q......
+
+....Q...
+
+......Q.
+
+Q.......
+
+..Q.....
+
+.......Q
+
+.....Q..
+
+...Q....
+
+Solution vizualized using [lichess](https://lichess.org)
+
+![board2][/images/sol4.png]
+
+With the graph of the fitness function through generations here:
+
+![graph2][/images/Figure_4.png]
 
 ##Prerequisites
 
