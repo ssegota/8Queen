@@ -42,11 +42,11 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-! [board1][/images/sol1.png]
+![board1](/images/sol1.png])
 
 With the graph of the fitness function through generations here:
 
-! [graph1][/images/Figure_1.png]
+![graph1](/images/Figure_1.png)
 
 ### Solution Example 2
 
