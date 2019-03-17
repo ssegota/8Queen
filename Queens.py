@@ -60,7 +60,7 @@ def crossGenes(gene1, gene2):
             moves.append([np.random.randint(0, 8), np.random.randint(0, 8)])
             continue
         
-        #IF one is (0,0) 
+        #IF one is (8,8) 
         if (gene1.moves[i][0] == 8 and gene1.moves[i][1] == 8) and ((gene2.moves[i][0] != 8 or gene2.moves[i][1] != 8)):
             #print("Use move from 2")
             moves.append(gene2.moves[i])
@@ -69,13 +69,6 @@ def crossGenes(gene1, gene2):
             #print("Use move from 1")
             moves.append(gene1.moves[i])
             continue
-        
-        #If both are zero append a random solution
-        if (gene2.moves[i][0] == 8 and gene2.moves[i][1] == 8) and ((gene1.moves[i][0] == 8 and gene1.moves[i][1] == 8)):
-                #print("Use move from 1")
-            moves.append([np.random.randint(0, 8), np.random.randint(0, 8)])
-            continue
-        
         
         ###Choose a random gene
         #otherwise toss a coin to pick between the two
@@ -88,10 +81,6 @@ def crossGenes(gene1, gene2):
             moves.append(gene2.moves[i])
             continue
                 
-        #print(gene1.moves[i])
-        #print(gene2.moves[i])
-        
-    #print("MOVES", moves)
     return(moves)
 
 def calculateFitness(moves, printBoard=False):
