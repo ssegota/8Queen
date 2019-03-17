@@ -42,7 +42,7 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board1](/images/sol1.png])
+![board1](/images/sol1.png)
 
 With the graph of the fitness function through generations here:
 
@@ -71,15 +71,15 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-! [board2][/images/sol2.png]
+![board2](/images/sol2.png)
 
 With the graph of the fitness function through generations here:
 
-! [graph2][/images/Figure_2.png]
+![graph2](/images/Figure_2.png)
 
 ### Solution Example 3
 
-Positions of Queens: [[7, 5]), [1, 0], [4, 1], [6, 2], [2, 7], [3, 3], [0, 4], [5, 6]]
+Positions of Queens: [[7, 5], [1, 0], [4, 1], [6, 2], [2, 7], [3, 3], [0, 4], [5, 6]]
 Board:
 
 ....Q...
@@ -100,11 +100,11 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board2][/images/sol3.png]
+![board3](/images/sol3.png)
 
 With the graph of the fitness function through generations here:
 
-![graph2][/images/Figure_3.png]
+![graph3](/images/Figure_3.png)
 
 ### Solution Example 4
 
@@ -129,11 +129,11 @@ Q.......
 
 Solution vizualized using [lichess](https://lichess.org)
 
-![board2][/images/sol4.png]
+![board4](/images/sol4.png)
 
 With the graph of the fitness function through generations here:
 
-![graph2][/images/Figure_4.png]
+![graph4](/images/Figure_4.png)
 
 ## Prerequisites
 
